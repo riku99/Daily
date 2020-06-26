@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if Rails.env == 'development'
+  List.create!(title: "first_seed_list", content: "this is first list in seed", priority: 1)
+  List.create!(title: 'second_seed_list', content: 'this is second list in seed', priority: 2)
+end
