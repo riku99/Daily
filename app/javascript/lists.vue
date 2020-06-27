@@ -20,7 +20,6 @@ export default {
   mounted() {
     let that = this;  //Vueインスタンス内を参照するthisを代入。
     axios.get('/api/lists').then(function(response) {
-      console.log(response.data)
       that.lists = response.data  //thisで指定すると、メソッドの呼び出し元、つまりaxiosオブジェクトのthisを参照してしまう。
                                   // アロー関数にした場合はthisはアロー関数が記述された'場所'によって決まるためthisでも問題ない。
     })
@@ -29,8 +28,5 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
+
 </style>

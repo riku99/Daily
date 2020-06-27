@@ -27,10 +27,12 @@ export default {
   methods: {
     deleteList: function() {
       let that = this;
-      axios.delete(`/api/lists/${ this.id }`).then(function(response) {
-        console.log('ok')
-        that.$router.push({ name: 'lists' })
-      })
+      if (confirm('削除しますか?')) {
+        axios.delete(`/api/lists/${ this.id }`).then(function(response) {
+          console.log('ok')
+          that.$router.push({ name: 'lists' })
+        })
+      }
     }
   }
 }

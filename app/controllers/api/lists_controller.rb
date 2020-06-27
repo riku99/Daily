@@ -12,9 +12,8 @@ class Api::ListsController < ApiController
   def create
     list = List.new(list_params)
     if list.save
-
     else
-      render json: list.errors
+      render json: list.errors.full_messages[0]
     end
   end
 
@@ -26,6 +25,8 @@ class Api::ListsController < ApiController
   def update
     list = List.find(params[:id])
     if list.update(list_params)
+    else
+      render json: list.errors.full_messages[0]
     end
   end
 

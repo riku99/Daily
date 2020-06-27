@@ -1,38 +1,34 @@
 <template>
-  <div>
-    <form>
-      <label>Title</label>
-      <input v-model="list.title" type="text">
-      <label>Content</label>
-      <input v-model='list.content' type="text"/>
-      <label>priority</label>
-      <input v-model='list.priority' type="number"/>
-      <input value='Create' type="button" v-on:click='createList'/>
-    </form>
-    <p>{{list.title}}</p>
-    <p>{{list.content}}</p>
-  </div>
+  <list-form v-bind:list='list' button='Create' v-on:click-form='createList'></list-form>
 </template>
 
 <script>
 import axios from 'axios'
+import ListForm from './list_form.vue'
 
 export default {
+  components: {
+    ListForm
+  },
   data: function() {
     return {
       list: {
         title: '',
         content: '',
-        priority: ''
+        priority: '',
+        error_message: ''
       }
     }
   },
   methods: {
-    createList: function() {
+    createList: function(e) {
       let that = this;
-      axios.post('/api/lists', this.list).then(function(response) {
-        console.log('ok')
-        that.$router.push({name: 'lists'})
+      axios.post('/api/lists', e).then(function(response) {
+        if(response.data) {
+          that.list.error_message = response.data
+        } else {
+          that.$router.push({name: 'lists'})
+        }
       })
     }
   }
