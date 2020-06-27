@@ -29,7 +29,9 @@ export default {
       let that = this;
       if (confirm('削除しますか?')) {
         axios.delete(`/api/lists/${ this.id }`).then(function(response) {
-          console.log('ok')
+          that.$store.commit('addInfo', {
+            info: { message: '削除しました' }
+          })
           that.$router.push({ name: 'lists' })
         })
       }

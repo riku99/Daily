@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='current_list.error_message'>
+    <div v-if='current_list.error_message' class='error'>
       <p>{{current_list.error_message}}</p>
     </div>
     <form>

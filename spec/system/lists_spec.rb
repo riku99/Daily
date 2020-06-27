@@ -14,6 +14,7 @@ RSpec.describe 'Lists', type: :system do
           click_button 'Create'
           expect(page).to have_content '書類の提出'
           expect(page).to have_content 1
+          expect(page).to have_css '.flash'
         }.to change(List, :count).by(1)
       end
     end
@@ -25,8 +26,9 @@ RSpec.describe 'Lists', type: :system do
         fill_in 'Content', with: '明後日の3時までに書類を提出する'
         fill_in 'Priority', with: nil
         expect {
-          click_link 'Create'
+          click_button 'Create'
           expect(page).to_not have_content '書類の提出'
+          expect(page).to have_css '.error'
         }.to_not change(List, :count)
       end
     end
@@ -45,6 +47,7 @@ RSpec.describe 'Lists', type: :system do
         click_button 'Delete'
         page.driver.browser.switch_to.alert.accept
         expect(page).to_not have_content '書類の提出'
+        expect(page).to have_css '.flash'
       }.to change(List, :count)
     end
   end

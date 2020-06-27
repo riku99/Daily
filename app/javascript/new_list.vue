@@ -27,6 +27,9 @@ export default {
         if(response.data) {
           that.list.error_message = response.data
         } else {
+          that.$store.commit('addInfo', {
+            info: { message: '作成しました' }
+          })
           that.$router.push({name: 'lists'})
         }
       })

@@ -8,6 +8,7 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui'
 
 Vue.use(ElementUI)
@@ -15,6 +16,7 @@ Vue.use(ElementUI)
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router, // router: router
+    store,
     render: h => h(App)
   }).$mount("#app")
   //document.body.appendChild(app.$el)
