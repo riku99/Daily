@@ -1,8 +1,15 @@
 <template>
   <div>
-    <p>{{list}}</p>
-    <router-link :to="{ name: 'edit_list', params: { id: this.id } }">Edit</router-link>
-    <input type="button" value="Delete" v-on:click='deleteList'/>
+    <div class='wrapper'>
+      <div class='container'>
+        <div>
+          <p class='show_content'>{{list.content}}</p>
+          <p>{{list.date}}</p>
+        </div>
+        <router-link :to="{ name: 'edit_list', params: { id: this.id } }" class='list_edit_link'>Edit</router-link>
+        <input type="button" value="Delete" v-on:click='deleteList' class='list_delete'/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,4 +48,19 @@ export default {
 </script>
 
 <style scoped>
+  p {
+    color: rgb(84, 84, 84);
+  }
+
+  .list_edit_link, .list_delete {
+    color: rgb(74, 163, 255);
+    border: none;
+    border-bottom: solid 1px rgb(74, 163, 255);
+    font-size: 20px;
+  }
+
+  .list_delete {
+    margin-left: 10%;
+    background-color: inherit;
+  }
 </style>

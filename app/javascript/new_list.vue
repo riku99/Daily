@@ -1,5 +1,9 @@
 <template>
-  <list-form v-bind:list='list' button='Create' v-on:click-form='createList'></list-form>
+  <div class='wrapper'>
+    <div class='container'>
+      <list-form v-bind:list='list' button='Create' v-on:click-form='createList'></list-form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -38,5 +42,6 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+  
 </style>

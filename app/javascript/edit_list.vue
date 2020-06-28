@@ -1,6 +1,10 @@
 <template>
   <div class="">
-    <list-form v-bind:list='list' button='Update' v-on:click-form='updateList'></list-form>
+    <div class='wrapper'>
+      <div class='container'>
+        <list-form v-bind:list='list' button='Update' v-on:click-form='updateList'></list-form>
+      </div>
+    </div>
   </div>
 </template>
 

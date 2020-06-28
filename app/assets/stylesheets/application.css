@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+   box-sizing: border-box;
+ }
+
+body {
+}
+
+a {
+   text-decoration: none;  /*リンク下の線を消す*/
+}
+
+button {
+  outline: 0;    /* ボタンを押す際に発生するの青枠戦を消す */
+  border: none;
+}
+
+.wrapper {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.container {
+  height: 84%;
+  width: 90%;
+  overflow: scroll;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+}

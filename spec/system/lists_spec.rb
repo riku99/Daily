@@ -42,7 +42,7 @@ RSpec.describe 'Lists', type: :system do
       fill_in 'Content', with: '明後日の3時までに書類を提出する'
       fill_in 'Priority', with: 1
       click_button 'Create'
-      click_link 'Content'
+      click_link '書類の提出'
       expect {
         click_button 'Delete'
         page.driver.browser.switch_to.alert.accept

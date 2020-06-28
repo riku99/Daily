@@ -6,6 +6,9 @@ class Api::ListsController < ApiController
 
   def show
     list = List.find(params[:id])
+    date = list.created_at.strftime('%Y/%m/%d')
+    list = list.attributes
+    list["date"] = date
     render json: list
   end
 
