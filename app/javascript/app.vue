@@ -4,7 +4,7 @@
     <router-link :to="{ name: 'new_list'}">Create</router-link>
     <div>
       <router-view></router-view>
-      <transition appear name='flash'>
+      <transition name='flash'>
         <p v-if='flash' class='flash'>{{flash}}</p>
       </transition>
     </div>
@@ -25,4 +25,11 @@ export default {
 </script>
 
 <style scoped>
+  .flash-enter {
+    transform: translateY(50px);
+  }
+
+  .flash-enter-active {
+    transition: 0.2s;
+  }
 </style>

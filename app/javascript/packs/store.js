@@ -20,7 +20,7 @@ export default new Vuex.Store({
     timeoutFlash(context) {
       setTimeout(function () {
         context.commit('deleteMessage')
-      }, 3000);
+      }, 5000);
     }
   },
   getters: {
