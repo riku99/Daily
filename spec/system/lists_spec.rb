@@ -81,7 +81,7 @@ RSpec.describe 'Lists', type: :system do
       end
     end
     context '優先順を押した場合' do
-      it 'Listのpriority属性を基準に昇順になる',focus: true do
+      it 'Listのpriority属性を基準に昇順になる' do
         visit root_path
         click_link 'List'
         click_button '優先順'

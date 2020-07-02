@@ -5,22 +5,24 @@
     </header>
     <div>
       <router-view></router-view>
-
       <transition name='flash'>
         <p v-if='flash' class='flash'>{{flash}}</p>
       </transition>
     </div>
-
     <footer>
       <div class="">
         <router-link v-bind:to='{ name: "lists" }'>Lists</router-link>
         <router-link :to="{ name: 'new_list'}">Create</router-link>
+        <router-link :to="{ name: 'new_diary' }">create_diary</router-link>
+        <router-link :to="{ name: 'diaries' }">Diaries</router-link>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   computed: {
     flash() {
@@ -51,7 +53,7 @@ header h3 {
   transform: translate(-50%, -50%);
   font-size: 27px;
   font-family: 'Skia-Regular_Condensed';
-  color: rgb(32, 76, 208);
+  color: #2c3e50;
 }
 
 footer {
@@ -65,11 +67,26 @@ footer {
   right: 0;
 }
 
-  .flash-enter {
-    transform: translateY(50px);
+.flash {
+  padding: 0% 10%;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  background-color: rgba(255, 191, 0, 0.8);
+  color: white;
+  font-weight: bold;
+}
+
+.flash-enter {
+    transform: translateY();
+    transform: translateX(-50%);
   }
 
-  .flash-enter-active {
-    transition: 0.2s;
+.flash-enter-active {
+    transition: 3s;
   }
 </style>
