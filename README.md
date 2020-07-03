@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ToDoリストや写真付きの日記を投稿する簡単なポートフォリオ。
 
-Things you may want to cover:
+初めてVue.jsを使い、Railsアプリの中に取り込む形でSPAとして実装した。
 
-* Ruby version
+使用言語
+Ruby, JavaScript, HTML, CSS
 
-* System dependencies
+使用フレームワーク
+Ruby on Rails, Vue.js
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+テストフレームワーク
+RSpec
