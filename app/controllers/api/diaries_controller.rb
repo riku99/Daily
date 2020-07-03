@@ -28,8 +28,31 @@ class Api::DiariesController < ApiController
     diary = Diary.new(diary_params)
     if diary.save
       diary.parse_base64(params[:diary][:base_image])
-      render json: diary
+    else
+      render json: diary.errors.full_messages[0]
     end
+  end
+
+  def show
+    diary = Diary.find(params[:id])
+    diary_hash = diary.attributes
+    if diary.image.attached?
+      filename = diary.image.blob.attributes['filename']
+      ext = File.extname(filename)
+      image = diary.image.download
+      en = Base64.encode64(image)
+      diary_hash['ext'] = ext
+      diary_hash['image'] = en
+    else
+      diary_hash['ext'] = ''
+      diary_hash['image'] = ''
+    end
+    render json: diary_hash
+  end
+
+  def destroy
+    diary = Diary.find(params[:id])
+    diary.delete
   end
 
   private

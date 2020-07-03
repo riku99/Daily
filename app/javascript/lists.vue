@@ -61,6 +61,8 @@ export default {
 <style scoped>
   .lists_box {
     margin-top: 3%;
+    overflow: scroll;
+    height: 600px;
   }
 
   .lists {

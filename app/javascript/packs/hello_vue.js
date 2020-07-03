@@ -9,9 +9,9 @@ import Vue from 'vue'
 import App from '../app.vue'
 import router from './router'
 import store from './store'
-import ElementUI from 'element-ui'
+import VuePaginate from 'vue-paginate'
 
-Vue.use(ElementUI)
+Vue.use(VuePaginate);
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

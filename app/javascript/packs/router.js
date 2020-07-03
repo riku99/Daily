@@ -6,12 +6,18 @@ import NewList from '../new_list.vue'
 import EditList from '../edit_list.vue'
 import NewDiary from '../new_diary.vue'
 import Diaries from '../diaries.vue'
+import Diary from '../diary.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'default_page',
+      component: Lists
+    },
     {
     path: '/lists',
     name: 'lists',
@@ -47,6 +53,14 @@ export default new Router({
     path: '/diaries',
     name: 'diaries',
     component: Diaries
+  },
+  {
+    path: '/diary/:id',
+    name: 'diary',
+    component: Diary,
+    props: routes => ({
+      id: Number(routes.params.id)
+    })
   }
 ]
 })

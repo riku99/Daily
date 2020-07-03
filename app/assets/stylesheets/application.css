@@ -42,9 +42,12 @@ button {
 .container {
   height: 84%;
   width: 90%;
-  overflow: scroll;
   position: absolute;
   top: 8%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.error {
+  color: red;
 }

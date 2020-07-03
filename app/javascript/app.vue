@@ -10,11 +10,11 @@
       </transition>
     </div>
     <footer>
-      <div class="">
-        <router-link v-bind:to='{ name: "lists" }'>Lists</router-link>
-        <router-link :to="{ name: 'new_list'}">Create</router-link>
-        <router-link :to="{ name: 'new_diary' }">create_diary</router-link>
-        <router-link :to="{ name: 'diaries' }">Diaries</router-link>
+      <div class='select'>
+        <router-link v-bind:to='{ name: "lists" }'>やることリスト</router-link>
+        <router-link :to="{ name: 'new_list'}">リスト作成</router-link>
+        <router-link :to="{ name: 'new_diary' }">日記作成</router-link>
+        <router-link :to="{ name: 'diaries' }">日記を読む</router-link>
       </div>
     </footer>
   </div>
@@ -45,6 +45,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10;
 }
 
 header h3 {
@@ -59,12 +60,14 @@ header h3 {
 footer {
   width: 100%;
   height: 60px;
-  background-color: inherit;
+  background-color: white;
   border-top: solid 1px rgb(227, 227, 227);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  line-height: 60px;
+  z-index: 10;
 }
 
 .flash {
@@ -89,4 +92,15 @@ footer {
 .flash-enter-active {
     transition: 3s;
   }
+
+.select {
+  display: flex;
+  justify-content: space-around;
+  }
+
+  .select a {
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
 </style>

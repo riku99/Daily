@@ -6,7 +6,7 @@ RSpec.describe 'Lists', type: :system do
     context '有効なデータを入力した場合' do
       it 'Listが作成される' do
         visit root_path
-        click_link 'Create'
+        click_link 'リスト作成'
         fill_in 'Title', with: '書類の提出'
         fill_in 'Content', with: '明後日の3時までに書類を提出する'
         fill_in 'Priority', with: 1
@@ -21,7 +21,7 @@ RSpec.describe 'Lists', type: :system do
     context '無効なデータを作成した場合' do
       it 'Listは作成されない' do
         visit root_path
-        click_link 'Create'
+        click_link 'リスト作成'
         fill_in 'Title', with: '書類の提出'
         fill_in 'Content', with: '明後日の3時までに書類を提出する'
         fill_in 'Priority', with: nil
@@ -35,13 +35,12 @@ RSpec.describe 'Lists', type: :system do
   end
 
   describe 'ユーザーがリストを削除する' do
+    before do
+      FactoryBot.create(:list, title: '書類の提出')
+    end
     it 'Listが削除される' do
       visit root_path
-      click_link 'Create'
-      fill_in 'Title', with: '書類の提出'
-      fill_in 'Content', with: '明後日の3時までに書類を提出する'
-      fill_in 'Priority', with: 1
-      click_button 'Create'
+      click_link 'やることリスト'
       click_link '書類の提出'
       expect {
         click_button 'Delete'
@@ -61,7 +60,7 @@ RSpec.describe 'Lists', type: :system do
     context '古く作成した順を選んだ場合' do
       it '古く作成した順に並ぶ' do
         visit root_path
-        click_link 'Lists'
+        click_link 'やることリスト'
         click_button '古く作成した順'
         lists = page.all('.lists')
         expect(lists[0].find('.lists_title').text).to eq 'First'
@@ -72,7 +71,7 @@ RSpec.describe 'Lists', type: :system do
     context '新しく作成した順' do
       it '新しく作成した順に並ぶ' do
         visit root_path
-        click_link 'Lists'
+        click_link 'やることリスト'
         click_button '新しく作成した順'
         lists = page.all('.lists')
         expect(lists[0].find('.lists_title').text).to eq 'Third'
@@ -83,7 +82,7 @@ RSpec.describe 'Lists', type: :system do
     context '優先順を押した場合' do
       it 'Listのpriority属性を基準に昇順になる' do
         visit root_path
-        click_link 'List'
+        click_link 'やることリスト'
         click_button '優先順'
         lists = page.all('.lists')
         expect(lists[0].find('.lists_title').text).to eq 'Second'

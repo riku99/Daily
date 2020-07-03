@@ -2,6 +2,9 @@ class Diary < ApplicationRecord
   has_one_attached :image
   attr_accessor :base_image
 
+  validates :title, presence: true
+  default_scope -> { order(created_at: :desc) }
+
   def parse_base64(image)
     if image.present?
       content_type = create_extension(image)  # ファイルデータの拡張子を調べる
