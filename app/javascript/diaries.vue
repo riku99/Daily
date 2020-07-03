@@ -52,6 +52,8 @@ export default {
     }).then(function() {
       if (that.diaries.length > 3) {
         that.present_diaries = that.diaries.slice(0, 6);
+      } else {
+        that.present_diaries = that.diaries
       }
     })
   },

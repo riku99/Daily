@@ -37,7 +37,6 @@ RSpec.describe 'Diaries', type: :system do
     it 'Diaryが削除される' do
       visit root_path
       click_link '日記を読む'
-      click_button '1'
       click_link '野球観戦'
       expect {
         click_button '削除する'
