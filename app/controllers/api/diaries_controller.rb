@@ -1,21 +1,15 @@
 class Api::DiariesController < ApiController
   def index
-    diaries = Diary.all
+    diaries = Diary.with_attached_image
     diaries_array = []
     diaries.each do |d|
       hash = d.attributes
       if d.image.attached?
-        filename = d.image.blob.attributes["filename"]
-        ext = File.extname(filename)
-        ext = ext.delete('.')
-        image = d.image.download
-        en = Base64.encode64(image)
+        image = Rails.application.routes.url_helpers.rails_blob_path(d.image)
         date = d.created_at.strftime('%Y/%m/%d')
-        hash["ext"] = ext
-        hash["image"] = en
+        hash["image"] = image
         hash["date"] = date
       else
-        hash["ext"] = ''
         hash["image"] = ''
         hash["date"] = date
       end
@@ -37,14 +31,9 @@ class Api::DiariesController < ApiController
     diary = Diary.find(params[:id])
     diary_hash = diary.attributes
     if diary.image.attached?
-      filename = diary.image.blob.attributes['filename']
-      ext = File.extname(filename)
-      image = diary.image.download
-      en = Base64.encode64(image)
-      diary_hash['ext'] = ext
-      diary_hash['image'] = en
+      image = Rails.application.routes.url_helpers.rails_blob_path(diary.image)
+      diary_hash['image'] = image
     else
-      diary_hash['ext'] = ''
       diary_hash['image'] = ''
     end
     render json: diary_hash

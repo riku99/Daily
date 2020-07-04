@@ -4,7 +4,7 @@
     <transition-group tag='div' class='diaries' appear>
       <div v-for='diary in present_diaries' v-bind:key='diary.id' class='diary'>
         <div v-if='diary.image'>
-          <img v-bind:src="`data:image/${diary.ext};base64,${diary.image}`" class='diary_image'>
+          <img v-bind:src="diary.image" class='diary_image'>
         </div>
         <router-link :to="{ name: 'diary', params: { id: diary.id} }">
           <div v-if='diary.title' class='diary_title'>
@@ -50,7 +50,7 @@ export default {
     axios.get('/api/diaries').then(function(response) {
       that.diaries = response.data;
     }).then(function() {
-      if (that.diaries.length > 3) {
+      if (that.diaries.length > 6) {
         that.present_diaries = that.diaries.slice(0, 6);
       } else {
         that.present_diaries = that.diaries
