@@ -1,68 +1,79 @@
 <template>
-<div class='wrapper'>
-  <div class='container'>
-    <transition-group tag='div' class='diaries' appear>
-      <div v-for='diary in present_diaries' v-bind:key='diary.id' class='diary'>
-        <div v-if='diary.image'>
-          <img v-bind:src="diary.image" class='diary_image'>
-        </div>
-        <router-link :to="{ name: 'diary', params: { id: diary.id} }">
-          <div v-if='diary.title' class='diary_title'>
-            {{diary.title}}
+  <div class="wrapper">
+    <div class="container">
+      <transition-group tag="div" class="diaries" appear>
+        <div
+          v-for="diary in present_diaries"
+          v-bind:key="diary.id"
+          class="diary"
+        >
+          <div v-if="diary.image">
+            <img v-bind:src="diary.image" class="diary_image" />
           </div>
-        </router-link>
-        <div class='diary_date'>
-          {{diary.date}}
+          <router-link :to="{ name: 'diary', params: { id: diary.id } }">
+            <div v-if="diary.title" class="diary_title">
+              {{ diary.title }}
+            </div>
+          </router-link>
+          <div class="diary_date">
+            {{ diary.date }}
+          </div>
         </div>
-      </div>
-    </transition-group>
-    <div class='pagenates'>
-      <div class='pagenate' v-for='count in pageCount'>
-        <input type='button' v-bind:value='count' v-on:click='changeDiaries(count)'>
+      </transition-group>
+      <div class="pagenates">
+        <div class="pagenate" v-for="count in pageCount">
+          <input
+            type="button"
+            v-bind:value="count"
+            v-on:click="changeDiaries(count)"
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data: function() {
     return {
       diaries: [],
       present_diaries: [],
-    }
+    };
   },
   computed: {
     pageCount() {
-      let count = this.diaries.length / 6
-      let page_count = Math.ceil(count)
+      let count = this.diaries.length / 6;
+      let page_count = Math.ceil(count);
       if (page_count > 10) {
-        return 10
+        return 10;
       } else {
-        return page_count
+        return page_count;
       }
-    }
+    },
   },
   mounted() {
     let that = this;
-    axios.get('/api/diaries').then(function(response) {
-      that.diaries = response.data;
-    }).then(function() {
-      if (that.diaries.length > 6) {
-        that.present_diaries = that.diaries.slice(0, 6);
-      } else {
-        that.present_diaries = that.diaries
-      }
-    })
+    axios
+      .get("/api/diaries")
+      .then(function(response) {
+        that.diaries = response.data;
+      })
+      .then(function() {
+        if (that.diaries.length > 6) {
+          that.present_diaries = that.diaries.slice(0, 6);
+        } else {
+          that.present_diaries = that.diaries;
+        }
+      });
   },
   methods: {
     changeDiaries(count) {
-      this.present_diaries = this.diaries.slice(count * 6 - 6, count * 6)
-    }
-  }
-}
+      this.present_diaries = this.diaries.slice(count * 6 - 6, count * 6);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -139,6 +150,6 @@ export default {
 
 .v-leave-active {
   transition: 1s;
-  display: none
+  display: none;
 }
 </style>
