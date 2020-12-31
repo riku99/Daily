@@ -1,8 +1,10 @@
 # README
 
-ToDoリストや写真付きの日記を投稿する簡単なポートフォリオ。
+Vue.jsを使ってみるために作成。
 
-初めてVue.jsを使い、Railsアプリの中に取り込む形でSPAとして実装した。
+ToDoリストや写真付きの日記を投稿できる。
+
+Vue.jsをRailsアプリの中に取り込む形でSPAとして実装した。
 
 使用言語
 Ruby, JavaScript, HTML, CSS
